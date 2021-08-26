@@ -10,8 +10,13 @@ if ($month === '8' && $day_of_month === '24') {
     $name = mb_substr($name, $day['delete']);
   }
 
+  /**
+   * Add dot(s) after a word to move the word to an icon as closely as possible.
+   *
+   * @see https://help.lametric.com/support/discussions/topics/6000060555
+   */
   if (isset($day['suffix'])) {
-    $name .= str_repeat(' ', $day['suffix']);
+    $name .= str_repeat('.', $day['suffix']);
   }
 
   /**
