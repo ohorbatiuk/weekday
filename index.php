@@ -5,7 +5,10 @@ $days = json_decode(file_get_contents('days.json'), TRUE);
 $day = $days[$day_of_week];
 $name = $day['name'];
 
-if ($month === '8' && $day_of_month === '24') {
+if (
+  ($month === '6' && $day_of_month === '28') ||
+  ($month === '8' && $day_of_month === '24')
+) {
   if (isset($day['delete'])) {
     $name = mb_substr($name, $day['delete']);
   }
