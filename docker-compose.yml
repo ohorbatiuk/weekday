@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   web:
-    container_name: lametric
+    container_name: weekday
     build: .
     volumes:
       - ./:/var/www/html/
