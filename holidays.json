@@ -1,5 +1,10 @@
 [
   {
+    "month": 5,
+    "day-of-week": 4,
+    "repeats": 3
+  },
+  {
     "month": 6,
     "day": 28
   },

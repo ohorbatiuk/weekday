@@ -7,7 +7,7 @@ $name = $day['name'];
 $holiday = FALSE;
 
 foreach (json_decode(file_get_contents('holidays.json'), TRUE) as $date) {
-  if ($month == $date['month']) {
+	if ($month == $date['month']) {
 		if (isset($date['day']) && $day_of_month == $date['day']) {
 			$holiday = TRUE;
 			break;
@@ -42,7 +42,7 @@ foreach (json_decode(file_get_contents('holidays.json'), TRUE) as $date) {
 			$holiday = TRUE;
 			break;
 		}
-  }
+	}
 }
 
 if ($holiday) {
