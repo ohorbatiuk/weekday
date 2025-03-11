@@ -1,21 +1,17 @@
 <?php
 
-[$day_of_week, $month, $day_of_month] = explode(',', date('w,n,j'));
-$days = json_decode(file_get_contents('days.json'), TRUE);
-$day = $days[$day_of_week];
+[$day_of_week, $month, $day_of_month] = array_map('intval', explode(',', date('w,n,j')));
+$day = (require 'days.php')[$day_of_week];
 $name = $day['name'];
 $holiday = FALSE;
 
-foreach (json_decode(file_get_contents('holidays.json'), TRUE) as $date) {
-	if ($month == $date['month']) {
-		if (isset($date['day']) && $day_of_month == $date['day']) {
+foreach (require 'holidays.php' as $date) {
+	if ($month === $date['month']) {
+		if ($day_of_month === ($date['day'] ?? 0)) {
 			$holiday = TRUE;
 			break;
 		}
-		elseif (
-			isset($date['day-of-week']) &&
-			$day_of_week == $date['day-of-week']
-		) {
+		elseif ($day_of_week === ($date['day-of-week'] ?? 0)) {
 			if (($expected_repeats = $date['repeats'] ?? 1) > 1) {
 				$found_repeats = 0;
 				$current_day_of_week = $day_of_week;
@@ -64,7 +60,7 @@ if ($holiday) {
 	 *
 	 * @see https://developer.lametric.com/icons
 	 *
-	 * @var int
+	 * @var int $icon
 	 */
 	$icon = $day['icon'] ?? 46587;
 }
@@ -77,6 +73,6 @@ if (isset($icon)) {
 
 $response = ['frames' => [$frame]];
 
-header('Content-Type: text/json');
+header('Content-Type: application/json');
 
-print json_encode($response);
+echo json_encode($response);
