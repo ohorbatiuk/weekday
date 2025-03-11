@@ -1,0 +1,33 @@
+services:
+  php:
+    image: "wodby/php:${PHP_TAG}"
+    container_name: "${PROJECT_NAME}_php"
+    environment:
+      PHP_EXTENSIONS_DISABLE: xhprof,spx
+    volumes:
+      - ./:/var/www/html:cached
+
+  nginx:
+    image: "wodby/nginx:${NGINX_TAG}"
+    container_name: "${PROJECT_NAME}_nginx"
+    depends_on:
+      - php
+    environment:
+      NGINX_STATIC_OPEN_FILE_CACHE: "off"
+      NGINX_ERROR_LOG_LEVEL: debug
+      NGINX_BACKEND_HOST: php
+      NGINX_VHOST_PRESET: php
+      NGINX_SERVER_ROOT: /var/www/html
+    volumes:
+      - ./:/var/www/html:cached
+    labels:
+      - "traefik.http.routers.${PROJECT_NAME}_nginx.rule=Host(`${PROJECT_BASE_URL}`)"
+
+  traefik:
+    image: traefik:v2.0
+    container_name: "${PROJECT_NAME}_traefik"
+    command: --api.insecure=true --providers.docker
+    ports:
+      - '80:80'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
