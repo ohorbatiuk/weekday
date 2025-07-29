@@ -2,7 +2,7 @@
 
 [$weekday, $month, $monthday] = array_map('intval', explode(',', date('w,n,j')));
 
-foreach ((require 'holidays.php')[$month] ?? [] as $dates)
+foreach ((array) (require 'holidays.php')[$month] ?? [] as $dates)
 	if ($holiday = in_array($monthday, $dates = (array) $dates)) break;
 	else {
 		$dates = array_column(array_filter($dates, 'is_array'), 1, 0);
