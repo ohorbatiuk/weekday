@@ -5,5 +5,5 @@ DirectoryIndex index.php
   RewriteCond %{SCRIPT_FILENAME} !-d
   RewriteCond %{SCRIPT_FILENAME} !-f
   RewriteRule ^ index.php [L]
-  RewriteRule !^(index\.php|favicon.ico|README\.md) [NC,F]
+  RewriteRule !^(index\.php|favicon.ico) [NC,F]
 </IfModule>

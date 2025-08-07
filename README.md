@@ -9,10 +9,13 @@ The server of the [День тижня](https://apps.lametric.com/apps/%D0%B4%D0
 
 Build image:
 ```bash
-docker build --build-arg TIMEZONE=$(grep ^TIMEZONE .env | cut -d '=' -f2) -t weekday .
+docker build \
+  --build-arg TIMEZONE=$(grep ^TIMEZONE .env | cut -d '=' -f2) \
+  -f Dockerfile.publish \
+  -t ohorbatiuk/weekday .
 ```
 
 Run container:
 ```bash
-docker run -d -p 80:80 --name weekday-app weekday
+docker run -d -p 80:80 --name weekday-app ohorbatiuk/weekday
 ```
