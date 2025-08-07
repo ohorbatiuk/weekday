@@ -1,0 +1,4 @@
+*
+!*.php
+!.htaccess
+!favicon.ico
