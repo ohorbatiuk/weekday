@@ -1,6 +1,7 @@
 FROM php:8.3-apache
 
-ENV TZ=Europe/Kyiv
+ARG TIMEZONE
+ENV TZ=${TIMEZONE}
 
 RUN apt-get update && \
     apt-get install -y tzdata && \

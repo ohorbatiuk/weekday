@@ -4,7 +4,7 @@ services:
     container_name: "${PROJECT_NAME}_php"
     environment:
       PHP_EXTENSIONS_DISABLE: xhprof,spx
-      PHP_DATE_TIMEZONE: Europe/Kyiv
+      PHP_DATE_TIMEZONE: ${TIMEZONE}
     volumes:
       - ./:/var/www/html:cached
 
