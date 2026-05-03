@@ -3,13 +3,16 @@
 [$weekday, $month, $monthday] = array_map('intval', explode(',', date('w,n,j')));
 
 foreach ((array) ((require 'holidays.php')[$month] ?? []) as $date)
-	if (is_numeric($date)) {
+	if (is_numeric($date))
+	{
 		if ($holiday = $date === $monthday) break;
 	}
-	elseif ($date[0] === $weekday) {
+	elseif ($date[0] === $weekday)
+	{
 		[$current_weekday, $current_monthday] = [$weekday, $monthday];
 
-		while ($current_monthday--) {
+		while ($current_monthday--)
+		{
 			if ($current_weekday === $weekday) $date[1]--;
 
 			$current_weekday = $current_weekday ? $current_weekday - 1 : 6;
@@ -20,7 +23,8 @@ foreach ((array) ((require 'holidays.php')[$month] ?? []) as $date)
 
 $frame['text'] = ($day = (require 'days.php')[$weekday])['name'];
 
-if ($holiday ?? FALSE) {
+if ($holiday ?? FALSE)
+{
 	if (isset($day['delete'])) $frame['text'] = mb_substr($frame['text'], $day['delete']);
 
 	/**
