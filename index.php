@@ -2,22 +2,20 @@
 
 [$weekday, $month, $monthday] = array_map('intval', explode(',', date('w,n,j')));
 
-foreach ((array) ((require 'holidays.php')[$month] ?? []) as $dates)
-	if ($holiday = in_array($monthday, $dates = (array) $dates)) break;
-	else {
-		$dates = array_column(array_filter($dates, 'is_array'), 1, 0);
+foreach ((array) ((require 'holidays.php')[$month] ?? []) as $date)
+	if (is_numeric($date)) {
+		if ($holiday = $date === $monthday) break;
+	}
+	elseif ($date[0] === $weekday) {
+		[$current_weekday, $current_monthday] = [$weekday, $monthday];
 
-		if (isset($dates[$weekday])) {
-			[$current_weekday, $current_monthday] = [$weekday, $monthday];
+		while ($current_monthday--) {
+			if ($current_weekday === $weekday) $date[1]--;
 
-			while ($current_monthday--) {
-				if ($current_weekday === $weekday) $dates[$weekday]--;
-
-				$current_weekday = $current_weekday ? $current_weekday - 1 : 6;
-			}
-
-			if ($holiday = $dates[$weekday] === 0) break;
+			$current_weekday = $current_weekday ? $current_weekday - 1 : 6;
 		}
+
+		if ($holiday = $date[1] === 0) break;
 	}
 
 $frame['text'] = ($day = (require 'days.php')[$weekday])['name'];
