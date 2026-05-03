@@ -1,7 +1,7 @@
 <?php
 
 return [
-	5 => [[4, 3]],
+	5 => [[4, 3]], // @see https://en.wikipedia.org/wiki/Vyshyvanka_Day
 	6 => 28,
 	7 => 28,
 	8 => [23, 24],
