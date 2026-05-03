@@ -27,18 +27,12 @@ if ($holiday ?? FALSE)
 {
 	if (isset($day['delete'])) $frame['text'] = mb_substr($frame['text'], $day['delete']);
 
-	/**
-	 * Add dot(s) after a word to move the word to an icon as closely as possible.
-	 *
-	 * @see https://help.lametric.com/support/discussions/topics/6000060555
-	 */
+	// Add dot(s) after a word to move the word to an icon as closely as possible.
+	// @see https://help.lametric.com/support/discussions/topics/6000060555
 	if (isset($day['suffix'])) $frame['text'] .= str_repeat('.', $day['suffix']);
 
-	/**
-	 * The "UA" icon identifier.
-	 *
-	 * @see https://developer.lametric.com/icons
-	 */
+	// The "UA" icon identifier.
+	// @see https://developer.lametric.com/icons
 	$frame['icon'] = $day['icon'] ?? 46587;
 }
 
