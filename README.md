@@ -1,4 +1,4 @@
-![image](image.jpeg "Indicator application for showing a day of the week in Ukraine language.")
+![image](https://repository-images.githubusercontent.com/306728223/f19600eb-4fda-47c4-842b-06ca7e6cf072 "Indicator application for showing a day of the week in Ukraine language.")
 
 # Introduction
 
