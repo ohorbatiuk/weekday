@@ -23,6 +23,14 @@ foreach ((array) ((require 'holidays.php')[$month] ?? []) as $date)
 
 $frame['text'] = ($day = (require 'days.php')[$weekday])['name'];
 
+if (isset($_GET['default']))
+	$frame['text'] = strtr($frame['text'], [
+		'0' => 'о',
+		'4' => 'ч',
+		'6' => 'б',
+		'8' => 'в',
+	]);
+
 if ($holiday ?? FALSE)
 {
 	if (isset($day['delete'])) $frame['text'] = mb_substr($frame['text'], $day['delete']);
