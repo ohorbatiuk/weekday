@@ -1,8 +1,8 @@
-![image](image.jpeg "Indicator application for showing a day of the week in Ukraine language.")
+![image](https://repository-images.githubusercontent.com/306728223/f19600eb-4fda-47c4-842b-06ca7e6cf072 "Indicator application for showing a day of the week in Ukraine language.")
 
 # Introduction
 
-It is the backend for a [LaMetric app](https://apps.lametric.com/apps/%D0%B4%D0%B5%D0%BD%D1%8C_%D1%82%D0%B8%D0%B6%D0%BD%D1%8F/11056) that displays the current day of the week in the Ukrainian language. A small visual trick is used to make the text more readable — some letters are substituted with similar-looking digits, resulting in cleaner and less rounded characters.
+It is the backend for a [LaMetric app](https://apps.lametric.com/apps/%D0%B4%D0%B5%D0%BD%D1%8C_%D1%82%D0%B8%D0%B6%D0%BD%D1%8F/11056) that displays the current day of the week in the Ukrainian language. A small visual trick is used to make the text more readable — some letters are substituted with similar-looking digits, resulting in cleaner and less rounded characters. This feature is enabled by default but can be disabled on the app's settings page.
 
 The app can also signal Ukrainian national holidays such as Independence Day, Constitution Day, and others. There are two ways it does this:
 

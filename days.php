@@ -8,11 +8,13 @@ return [
 	[
 		'name' => 'п0неділ0к',
 		'icon' => 46589,
+		'iconDefault' => 77754,
 		'delete' => 2,
 	],
 	[
-		'name' => 'вівт0р0к',
-		'icon' => 46586,
+		'name' => '8і8т0р0к',
+		'icon' => 77755,
+		'iconDefault' => 46586,
 		'delete' => 1,
 		'suffix' => 1,
 	],
@@ -20,7 +22,7 @@ return [
 		'name' => 'середа',
 	],
 	[
-		'name' => '4етвер',
+		'name' => '4ет8ер',
 		'suffix' => 2,
 	],
 	[
