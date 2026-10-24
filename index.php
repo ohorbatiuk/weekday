@@ -1,5 +1,7 @@
 <?php
 
+const KEYS = ['icon', 'iconDefault'];
+
 [$weekday, $month, $monthday] = array_map('intval', explode(',', date('w,n,j')));
 
 foreach ((array) ((require 'holidays.php')[$month] ?? []) as $date)
@@ -23,12 +25,12 @@ foreach ((array) ((require 'holidays.php')[$month] ?? []) as $date)
 
 $frame['text'] = ($day = (require 'days.php')[$weekday])['name'];
 
-if (isset($_GET['default']))
+if ($default = ($_GET['font'] ?? '') === 'Default')
 	$frame['text'] = strtr($frame['text'], [
-		'0' => 'о',
-		'4' => 'ч',
-		'6' => 'б',
-		'8' => 'в',
+		0 => 'о',
+		4 => 'ч',
+		6 => 'б',
+		8 => 'в',
 	]);
 
 if ($holiday ?? FALSE)
@@ -41,7 +43,9 @@ if ($holiday ?? FALSE)
 
 	// The "UA" icon identifier.
 	// @see https://developer.lametric.com/icons
-	$frame['icon'] = $day['icon'] ?? 46587;
+	if ($default) $frame['icon'] = $day[KEYS[$weekday !== 2]] ?? null;
+
+	$frame['icon'] ??= $day[KEYS[$weekday === 2]] ?? 46587;
 }
 
 header('Content-Type: application/json');
