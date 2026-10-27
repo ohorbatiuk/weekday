@@ -1,5 +1,27 @@
 <?php
 
+// Symbols mapping to convert a custom font to the default one.
+// @var array<int, string>
+const VOCABULARY = [
+	0 => 'о',
+	4 => 'ч',
+	6 => 'б',
+	8 => 'в',
+];
+
+// The "UA" icon identifier.
+// @see https://developer.lametric.com/icons
+// @var int
+const ICON = 46587;
+
+// Key names for the days array storing icons for each font type.
+// @var string[]
+const KEYS = ['icon', 'iconDefault'];
+
+// The serial number of Tuesday in the week that begins on Sunday.
+// @var int
+const TUESDAY = 2;
+
 [$weekday, $month, $monthday] = array_map('intval', explode(',', date('w,n,j')));
 
 foreach ((array) ((require 'holidays.php')[$month] ?? []) as $date)
@@ -23,6 +45,8 @@ foreach ((array) ((require 'holidays.php')[$month] ?? []) as $date)
 
 $frame['text'] = ($day = (require 'days.php')[$weekday])['name'];
 
+if ($default = ($_GET['font'] ?? '') === 'Default') $frame['text'] = strtr($frame['text'], VOCABULARY);
+
 if ($holiday ?? FALSE)
 {
 	if (isset($day['delete'])) $frame['text'] = mb_substr($frame['text'], $day['delete']);
@@ -31,9 +55,9 @@ if ($holiday ?? FALSE)
 	// @see https://help.lametric.com/support/discussions/topics/6000060555
 	if (isset($day['suffix'])) $frame['text'] .= str_repeat('.', $day['suffix']);
 
-	// The "UA" icon identifier.
-	// @see https://developer.lametric.com/icons
-	$frame['icon'] = $day['icon'] ?? 46587;
+	if ($default) $frame['icon'] = $day[KEYS[$weekday !== TUESDAY]] ?? null;
+
+	$frame['icon'] ??= $day[KEYS[$weekday === TUESDAY]] ?? ICON;
 }
 
 header('Content-Type: application/json');
