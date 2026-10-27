@@ -24,3 +24,9 @@ Run container:
 ```bash
 docker run -d -p 80:80 --name weekday-app ohorbatiuk/weekday
 ```
+
+<div align="center">
+  <a href="https://apps.lametric.com/apps/%D0%B4%D0%B5%D0%BD%D1%8C_%D1%82%D0%B8%D0%B6%D0%BD%D1%8F/11056">LaMetric</a> |
+  <a href="https://hub.docker.com/r/ohorbatiuk/weekday">Docker</a> |
+  <a href="https://github.com/ohorbatiuk/weekday">GitHub</a>
+</div>
